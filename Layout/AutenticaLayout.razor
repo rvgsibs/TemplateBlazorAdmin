@@ -1,0 +1,96 @@
+﻿@inherits LayoutComponentBase
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <style>
+        .brand {
+            color: #9A0100;
+        }
+
+        .sign-container {
+            max-width: 470px;
+        }
+
+        .icon-height {
+            height: 24px;
+            width: 24px;
+        }
+
+        .right-box {
+            background: linear-gradient(#f8cfde, #9A0100);
+        }
+
+        .inputbox {
+            border: 1px solid #cfcece;
+            outline: none;
+        }
+
+            .inputbox:focus {
+                border: 2px solid #9A0100;
+            }
+
+        .input-label {
+            top: -12px;
+            left: 3%;
+        }
+
+        .sign-up {
+            background: #9A0100;
+            color: #fff;
+        }
+
+            .sign-up:hover {
+                background: #fff;
+                color: #9A0100;
+                border: 1px solid #9A0100;
+            }
+
+        .signin-border {
+            width: 60px;
+            border: 2px solid #9A0100;
+        }
+    </style>
+</head>
+
+<body>
+
+    <MudDialogProvider />
+    <MudSnackbarProvider />
+    <section class="container-fluid ">
+        <div class="row vh-100">
+            <div class="col-md-7 col-12">
+                <div class="fw-medium p-2">Nome página</div>
+                <div class="px-4 sign-container mx-auto">
+                    <div class="text-center mt-5">
+                        <h2 class="fw-bold brand fs-1 my-4">Entrar na sua conta</h2>
+                        <div class="mb-2 mx-auto signin-border"></div>
+
+                        <div class="pt-4"></div>
+                        @Body
+
+                        <div class="p-3 mt-3">
+                            @* <a class="text-decoration-none text-reset" href="#">Política de Privacidade</a>
+                            . <a class="text-decoration-none text-reset" href="#">Termos e condições</a> *@
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 col-12 right-box d-flex">
+                <div class="text-white text-center m-auto m-5 p-5">
+                    <h2 class="fw-bolder fs-1 my-4">Bem vindo à nome página!</h2>
+                    <div class="signin-border border border-2 border-white mx-auto"></div>
+                    <p class="fs-5 my-4">Preencha suas informações pessoais e comece sua jornada conosco.</p>
+                    @*<button class="btn fw-bold btn-lg border-white rounded-5 px-5 fs-6 text-white">Sign Up</button>*@
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- bootstrap js link -->
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+﻿@page "/weather"
+@using System.Net.Http.Json
+@inject HttpClient httpClient
+
+<MudDataGrid Items="@forecasts" Filterable="false" SortMode="SortMode.Multiple" Groupable="false" QuickFilter="@_quickFilter">
+    <ToolBarContent>
+        <MudText Typo="Typo.h6">Listagem</MudText>
+        <MudSpacer />
+        <MudTextField @bind-Value="_searchString" Placeholder="Buscar..." Adornment="Adornment.Start" Immediate="true"
+                      AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+        @* <MudTextField @bind-Value="_searchString" Placeholder="Buscar..." Adornment="Adornment.Start" Immediate="true" Variant="Variant.Outlined" 
+                      AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField> *@
+    </ToolBarContent>
+    <Columns>
+        <PropertyColumn Property="x => x.Date" Title="Data" />
+        <PropertyColumn Property="x => x.TemperatureC" Title="Temperatura C"  />
+        <PropertyColumn Property="x => x.Summary" Title="Descrição" />
+        <PropertyColumn Property="x => x.TemperatureF" Title="Temperatura F" />
+        <TemplateColumn CellClass="d-flex justify-end">
+            <CellTemplate>
+                <MudStack Row>
+                    <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Error">Texto</MudButton>
+                    <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">Texto</MudButton>
+                </MudStack>
+            </CellTemplate>
+        </TemplateColumn>
+    </Columns>
+    <PagerContent>
+        <MudDataGridPager T="WeatherForecast" RowsPerPageString="Linhas por página" InfoFormat="{first_item} - {last_item} de {all_items}" />
+    </PagerContent>
+</MudDataGrid>
+
+@code {
+    private WeatherForecast[]? forecasts;
+
+    private string _searchString;
+
+    protected override async Task OnInitializedAsync()
+    {
+        forecasts = await httpClient.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
+    }
+
+    private Func<WeatherForecast, bool> _quickFilter => x =>
+    {
+        if (string.IsNullOrWhiteSpace(_searchString))
+            return true;
+
+        if (x.Summary.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+            return true;
+
+        if (x.TemperatureC.ToString().Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+            return true;
+
+        if (x.Date.ToString().Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+            return true;
+
+        if ($"{x.TemperatureF}".Contains(_searchString))
+            return true;
+
+        return false;
+    };
+
+    private bool _isReadOnly = true;
+
+    public class WeatherForecast
+    {
+        public DateOnly Date { get; set; }
+
+        public int TemperatureC { get; set; }
+
+        public string? Summary { get; set; }
+
+        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    }
+
+}
+ 

@@ -1,0 +1,54 @@
+﻿@page "/texto"
+@inject ISnackbar SnackbarService
+@inject NavigationManager NavigationManager
+
+<MudCheckBox Label="Read only" @bind-Checked="_readOnly" />
+
+<MudButton Color="Color.Primary" Variant="Variant.Filled" @onclick="Carregar">Carregar texto</MudButton>
+
+<MudExRichTextEdit @ref="@Editor"
+                   ReadOnly="@_readOnly"
+                   Height="444"
+                   Class="m-2"
+                   Placeholder="Edit html">
+
+</MudExRichTextEdit>
+
+<MudButton Color="Color.Primary" Variant="Variant.Filled" @onclick="Salvar">Salvar</MudButton>
+
+<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@OnClick">Exibir mensagem </MudButton>
+
+@code {
+    bool _readOnly = false;
+    MudExRichTextEdit Editor;
+
+
+    private void Salvar()
+    {
+        var texto = Editor.Value;
+    }
+
+    private void Carregar()
+    {
+        Editor.Value = "<p>Aqui vai o texto no formato <b>HTML</b></p>";
+    }
+
+    private void OnClick()
+    {
+
+        SnackbarService.Add
+    (
+    @<div>@((MarkupString)Editor.Value)</div>,
+    Severity.Success,
+     config =>
+        {
+            config.Icon = Icons.Material.Filled.Check;
+            config.IconColor = Color.Inherit;
+            config.IconSize = Size.Large;
+
+        }
+        );
+
+        NavigationManager.NavigateTo("/");
+    }
+}

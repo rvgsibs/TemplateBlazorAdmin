@@ -1,0 +1,73 @@
+﻿@inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
+@inject IAuthService AuthService
+
+<MudThemeProvider @ref="@_mudThemeProvider" IsDarkMode="@_isDarkMode" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<AuthorizeView>
+    <Authorized>
+
+        <MudLayout>
+            <MudAppBar Elevation="0">
+                <MudToggleIconButton @bind-Toggled="@_isNavOpen" Edge="Edge.Start"
+                                     Icon="@Icons.Material.Filled.Menu" Title="Mostrar menu" Color="Color.Surface"
+                                     ToggledIcon="@Icons.Material.Filled.MenuOpen" ToggledTitle="Esconder menu" ToggledColor="Color.Surface">
+                </MudToggleIconButton>
+                <MudSpacer />
+                <MudToggleIconButton @bind-Toggled="@_isDarkMode" Edge="Edge.Start"
+                                     Icon="@Icons.Material.Filled.DarkMode" Title="Modo escuro" Color="Color.Surface"
+                                     ToggledIcon="@Icons.Material.Filled.LightMode" ToggledTitle="Modo claro" ToggledColor="Color.Surface">
+                </MudToggleIconButton>
+                <MudText>Admin</MudText>
+                <MudButton Variant="Variant.Filled" Color="Color.Error" OnClick="@Logout">Sair </MudButton>
+            </MudAppBar>
+
+            <MudDrawer @bind-Open="_isNavOpen" Elevation="1">
+                <MudDrawerHeader>
+                    <MudText Typo="Typo.h6">Modelo</MudText>
+                </MudDrawerHeader>
+                <NavMenu />
+            </MudDrawer>
+
+            <MudMainContent>
+                <MudContainer MaxWidth="MaxWidth.ExtraExtraLarge" Class="my-4 pt-4">
+                    @Body
+                </MudContainer>
+            </MudMainContent>
+
+        </MudLayout>
+
+    </Authorized>
+    <NotAuthorized>
+        @{
+            NavigationManager.NavigateTo("login");
+        }
+    </NotAuthorized>
+</AuthorizeView>
+
+
+@code {
+    bool _isNavOpen = true;
+    bool _isDarkMode = true;
+
+    MudThemeProvider? _mudThemeProvider;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _isDarkMode = true;
+            _isDarkMode = await _mudThemeProvider!.GetSystemPreference();
+            StateHasChanged();
+        }
+    }
+
+    public async Task Logout()
+    {
+        AuthService.Logout();
+        NavigationManager.NavigateTo("/login");
+
+    }
+}
