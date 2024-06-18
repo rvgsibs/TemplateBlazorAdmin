@@ -30,6 +30,11 @@ https://modelo-blazor.netlify.app/
 
 ![image](https://github.com/rvgsibs/TemplateBlazorAdmin/assets/43799288/6030029d-8f76-4953-9648-c5eca89a6fe2)
 
+![image](https://github.com/rvgsibs/TemplateBlazorAdmin/assets/43799288/ae5f74fc-6e00-42ee-969b-7d63fc26983a)
+
+![image](https://github.com/rvgsibs/TemplateBlazorAdmin/assets/43799288/fee1006c-a218-47b8-8f36-fa6353e33986)
+
+
 
 ## Stack utilizada
 
