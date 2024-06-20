@@ -5,10 +5,10 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MudBlazor;
 using MudBlazor.Services;
 using TemplateBlazorAdmin;
-using TemplateBlazorAdmin.Core.Services;
-using TemplateBlazorAdmin.Core.Services.Interface;
+using TemplateBlazorAdmin.Services;
 using TemplateBlazorAdmin.Services.Autenticacao;
 using TemplateBlazorAdmin.Services.Autenticacao.Interface;
+using TemplateBlazorAdmin.Services.Interface;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");

@@ -1,5 +1,7 @@
-﻿using TemplateBlazorAdmin.Core.Request;
-using TemplateBlazorAdmin.Core.Response;
+﻿
+
+using TemplateBlazorAdmin.Request;
+using TemplateBlazorAdmin.Response;
 
 namespace TemplateBlazorAdmin.Services.Autenticacao.Interface;
 
