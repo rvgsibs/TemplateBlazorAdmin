@@ -21,6 +21,8 @@ Para efetuar login no sistema:
 
 <a href="https://modelo-blazor.netlify.app/" target="_blank" rel="noopener">https://modelo-blazor.netlify.app</a>
 
+Here's a link to [Google](https://modelo-blazor.netlify.app/){target="_blank"}
+
 ## Screenshots
 
 ![image](https://github.com/rvgsibs/TemplateBlazorAdmin/assets/43799288/162ce0c7-d5e1-4270-9af8-1efa833d58ca)
