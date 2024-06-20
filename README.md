@@ -42,6 +42,6 @@ Para efetuar login no sistema:
 ## Autores
 
 - Rodrigo Sousa [@rvgsibs](https://www.github.com/rvgsibs)
-<!-- - Fábio Mendonça [@fabiojmj](https://github.com/fabiojmj) -->
+- Fábio Mendonça [@fabiojmj](https://github.com/fabiojmj) 
 
 
