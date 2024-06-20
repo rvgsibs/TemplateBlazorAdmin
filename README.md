@@ -19,9 +19,7 @@ Para efetuar login no sistema:
 
 ## Demonstração
 
-https://modelo-blazor.netlify.app/
-
-<a href="https://modelo-blazor.netlify.app/" target="_blank" rel="noopener">Exemplo de link</a>
+<a href="https://modelo-blazor.netlify.app/" target="_blank" rel="noopener">https://modelo-blazor.netlify.app</a>
 
 ## Screenshots
 
