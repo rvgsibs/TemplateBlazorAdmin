@@ -1,11 +1,10 @@
 ﻿using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components.Authorization;
-using TemplateBlazorAdmin.Request;
-using TemplateBlazorAdmin.Response;
-using TemplateBlazorAdmin.Services.Autenticacao.Interface;
-using TemplateBlazorAdmin.Services.Interface;
+using TemplateBlazorAdmin.Core.Request;
+using TemplateBlazorAdmin.Core.Response;
+using TemplateBlazorAdmin.Core.Services.Interface;
 
-namespace TemplateBlazorAdmin.Services.Autenticacao;
+namespace TemplateBlazorAdmin.Core.Services;
 
 public class AuthService : IAuthService
 {

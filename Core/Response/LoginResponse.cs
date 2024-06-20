@@ -1,4 +1,4 @@
-﻿namespace TemplateBlazorAdmin.Response;
+﻿namespace TemplateBlazorAdmin.Core.Response;
 
 public class LoginResponse
 {

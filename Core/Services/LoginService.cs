@@ -1,8 +1,8 @@
-﻿using TemplateBlazorAdmin.Request;
-using TemplateBlazorAdmin.Response;
-using TemplateBlazorAdmin.Services.Interface;
+﻿using TemplateBlazorAdmin.Core.Request;
+using TemplateBlazorAdmin.Core.Response;
+using TemplateBlazorAdmin.Core.Services.Interface;
 
-namespace TemplateBlazorAdmin.Services;
+namespace TemplateBlazorAdmin.Core.Services;
 
 public class LoginService : ILoginService
 {

@@ -1,84 +1,14 @@
-﻿@layout AutenticaLayout﻿
+﻿@inherits LoginPage
+@layout AutenticaLayout﻿
 @page "/login"
-
-@inject IAuthService AuthService
-@inject NavigationManager NavigationManager
-@inject ISnackbar SnackbarService
-
-
-@if (ShowErrors)
-{
-    <DisplayMessage ErrorMessage="@Error" />
-}
-
-@if (Autenticando)
-{
-    <DisplayLoading></DisplayLoading>
-}
-
-<EditForm Model="loginRequest" OnValidSubmit="HandleLogin">
+<EditForm Model="@InputRequest" OnSubmit="OnValidSubmitAsync">
     <DataAnnotationsValidator />
-    <ValidationSummary />
 
-    <div class="position-relative my-4">
-        <div class="input-label position-absolute  px-2 bg-white z-1">
-            <label for="usuario" class="control-label">Usuário</label>
-        </div>       
-        <InputText Id="usuario" Class="form-control inputbox shadow-none p-4" @bind-Value="loginRequest.Usuario" />
-        <ValidationMessage For="@(() => loginRequest.Usuario)" />
-    </div>
-    <div class="position-relative my-5">
-        <div class="input-label position-absolute  px-2 bg-white z-1">
-            <label for="senha" class="control-label">Senha</label>
-        </div>        
-        <InputText Id="senha" type="password" Class="form-control inputbox shadow-none p-4"
-                   @bind-Value="loginRequest.Senha" />
-        <ValidationMessage For="@(() => loginRequest.Senha)" />
-    </div>
-    <button type="submit" class="btn my-5 fw-bold btn-lg sign-up rounded-5 px-5 fs-6">Enviar</button>
+    <MudTextField Label="Usuário" HelperText="Campo obrigatório - informe o nome do usuário" RequiredError="Favor informar o nome do usuário"
+                  @bind-Value="InputRequest.Usuario" For="@(() => InputRequest.Usuario)" Variant="@Variant.Outlined" Required="true"></MudTextField>
+
+    <MudTextField Label="Senha" HelperText="Campo obrigatório - informe a senha" RequiredError="Favor informar a senha"
+                  @bind-Value="InputRequest.Senha" For="@(() => InputRequest.Senha)" InputType="InputType.Password" Variant="@Variant.Outlined" Required="true"></MudTextField>
+
+    <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" class="btn my-5 fw-bold btn-lg sign-up rounded-5 px-5 fs-6">Salvar</MudButton>
 </EditForm>
-
-@code {
-
-    private LoginRequest loginRequest = new LoginRequest();
-    private bool ShowErrors;
-    private bool Autenticando = false;
-    private string Error = string.Empty;
-
-    private async Task HandleLogin()
-    {
-        Autenticando = true;
-        ShowErrors = false;
-        try
-        {
-            var result = await AuthService.Login(loginRequest);
-
-            if (result is not null && result.Token is not null)
-            {
-                NavigationManager.NavigateTo("/");
-            }
-            else
-            {
-
-                SnackbarService.Add(@<div>Usuário e/ou senha inválidos.</div>,Severity.Error,
-                     config =>
-                        {
-                             config.Icon = Icons.Material.Filled.Check;
-                             config.IconColor = Color.Inherit;
-                             config.IconSize = Size.Large;
-
-                        });
-                Error = "Usuário e/ou senha inválidos.";
-                ShowErrors = true;
-            }
-
-            Autenticando = false;
-        }
-        catch (Exception ex)
-        {
-            Error = "Não foi possível fazer o Login : " + ex.Message;
-            ShowErrors = true;
-            Autenticando = false;
-        }
-    }
-}
