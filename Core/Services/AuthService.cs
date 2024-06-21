@@ -21,7 +21,7 @@ public class AuthService : IAuthService
         _localStorage = localStorage;
     }
 
-    public async Task<LoginResponse> Login(LoginRequest loginRequest)
+    public async Task<LoginResponse>? Login(LoginRequest loginRequest)
     {
         var result = await _loginService.Login(loginRequest);
 

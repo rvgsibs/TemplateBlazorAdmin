@@ -10,7 +10,7 @@ public class LoginService : ILoginService
     {
 
     }
-    public async Task<LoginResponse?> Login(LoginRequest loginRequest)
+    public async Task<LoginResponse>? Login(LoginRequest loginRequest)
     {
         if (loginRequest.Usuario == "admin" && loginRequest.Senha == "123")
         {

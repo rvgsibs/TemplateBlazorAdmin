@@ -18,13 +18,13 @@ public partial class LoginPage : ComponentBase
 
     #region Services
     [Inject]
-    public IAuthService AuthService { get; set; }
+    public IAuthService AuthService { get; set; } = null!;
 
     [Inject]
-    public NavigationManager NavigationManager { get; set; }
+    public NavigationManager NavigationManager { get; set; } = null!;
 
     [Inject]
-    public ISnackbar SnackbarService { get; set; }
+    public ISnackbar SnackbarService { get; set; } = null!;
 
     #endregion
 

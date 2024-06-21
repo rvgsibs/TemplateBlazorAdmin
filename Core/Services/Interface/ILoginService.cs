@@ -5,5 +5,5 @@ namespace TemplateBlazorAdmin.Core.Services.Interface;
 
 public interface ILoginService
 {
-    Task<LoginResponse> Login(LoginRequest loginRequest);
+    Task<LoginResponse>? Login(LoginRequest loginRequest);
 }
